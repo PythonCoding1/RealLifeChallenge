@@ -1,0 +1,22 @@
+import face_recognition
+import cv2
+import glob
+
+#I have provided my path from my local computer, please change it accordingly
+friend=face_recognition.load_image_file("1.jpg")                 #put the one image of your friend in the oython code folder i.e no
+                                                                  #no need to gave path
+friend_encoding=face_recognition.face_encodings(friend)[0]
+
+
+path = "C:\\Users\\heman\\Pictures\\Camera Roll\*.*" #path of  folder contaning all the images
+z=0                                                  #for gaving the name to ectracted images  0,1,2 nad so on.....
+for file in glob.glob(path):                         #iterate through all the images in the folder
+    image= face_recognition.load_image_file(file)
+    image_encoding= face_recognition.face_encodings(image)[0]
+
+
+    r = face_recognition.compare_faces([friend_encoding], image_encoding) #compare all the iterated images with your fried image
+    if r[0]:                                                              #if image match with your friend image then copy it to denstination.
+        cv2.imwrite(f"{z}.png",cv2.imread(file))
+        z = z + 1
+print(f"total {z} images of your friend found in the folder copied sucessfully to destination")
