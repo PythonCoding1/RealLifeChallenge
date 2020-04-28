@@ -1,15 +1,14 @@
-import face_recognition
-import cv2
+import face_recognition        #first install the modules if you don't have insatlled already.
+import cv2                     
 import glob
 
 #I have provided my path from my local computer, please change it accordingly
-friend=face_recognition.load_image_file("1.jpg")                 #put the one image of your friend in the oython code folder i.e no
-                                                                  #no need to gave path
-friend_encoding=face_recognition.face_encodings(friend)[0]
+friend=face_recognition.load_image_file("1.jpg")                 #put the one image of your friend in the python code folder i.e no
+friend_encoding=face_recognition.face_encodings(friend)[0]                                                                  #no need to gave path
 
-
+#I have provided my path from my local computer, please change it accordingly
 path = "C:\\Users\\heman\\Pictures\\Camera Roll\*.*" #path of  folder contaning all the images
-z=0                                                  #for gaving the name to ectracted images  0,1,2 nad so on.....
+z=0                                                  #for gaving the name to exracted images (z).png-->replace by 1.png,2.png and so on
 for file in glob.glob(path):                         #iterate through all the images in the folder
     image= face_recognition.load_image_file(file)
     image_encoding= face_recognition.face_encodings(image)[0]
